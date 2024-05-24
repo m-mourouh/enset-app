@@ -1,0 +1,72 @@
+{
+  "users": [
+    { 
+      "id": "user",
+      "password": "MTIzNA==",
+      "roles": ["USER"],
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyIiwidXNlcm5hbWUiOiJ1c2VyIiwiaWF0IjoxNTE2MjM5MDIyLCJyb2xlcyI6WyJVU0VSIl19.pT8jc6paL0XFm87yHSaYCLOijjTMdbGTwI9z3h5C0Ws"
+    },
+    {
+      "id": "admin",
+      "password": "MTIzNA==",
+      "roles": ["USER", "ADMIN"],
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE1MTYyMzkwMjIsInJvbGVzIjpbIlVTRVIiLCJBRE1JTiJdfQ.yXs1osz4tGMVpC98QNNpu5skKta6yGHJIyYzIdFRSb4"
+    }
+  ],
+  "products": [
+    {
+      "name": "sssd",
+      "price": 0,
+      "checked": true,
+      "id": 8
+    },
+    {
+      "name": "sssd",
+      "price": 85,
+      "checked": true,
+      "id": 9
+    },
+    {
+      "name": "axxx",
+      "price": 969,
+      "checked": true,
+      "id": 10
+    },
+    {
+      "name": "wwwwww",
+      "price": 0,
+      "checked": true,
+      "id": 12
+    },
+    {
+      "name": "sss",
+      "price": 0,
+      "checked": false,
+      "id": 13
+    },
+    {
+      "name": "sss",
+      "price": null,
+      "checked": true,
+      "id": 14
+    },
+    {
+      "name": "sqqs",
+      "price": null,
+      "checked": null,
+      "id": 15
+    },
+    {
+      "name": "qsqsqs",
+      "price": null,
+      "checked": null,
+      "id": 16
+    },
+    {
+      "name": "sss",
+      "price": 0,
+      "checked": false,
+      "id": 17
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+<div class="container mt-5">
+    <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="isProductUpdated">
+      Product has been updated successfully
+      <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="isProductUpdated = false"></button>
+    </div>
+      <!-- <p>{{productForm.value | json}}</p> -->
+    <form [formGroup]="productForm"  (ngSubmit)="$event.preventDefault(); updateProduct()" >
+      <div class="form-group">
+        <label for="productName" class="mb-2 h6">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="name"
+          id="productName"
+        />
+        <div
+          *ngIf="
+            productForm.get('name')?.invalid && productForm.get('name')?.touched
+          "
+        >
+          <small class="text-danger">This field is required</small>
+        </div>
+      </div>
+  
+      <div class="form-group mt-3">
+        <label for="productPrice" class="mb-2 h6">Price</label>
+        <input
+          type="number"
+          class="form-control"
+          id="productPrice"
+          formControlName="price"
+        />
+      </div>
+  
+      <div class="form-check mt-3">
+        <input
+          type="checkbox"
+          formControlName="checked"
+          id="checked"
+          class="form-check-input"
+        />
+        <label class="form-check-label " for="checked">Checked</label>
+      </div>
+  
+      <button
+        type="submit"
+        class="btn btn-success mt-3"
+        [disabled]="productForm.invalid"
+      >
+        Update
+      </button>
+    </form>
+  </div>
+  

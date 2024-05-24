@@ -1,0 +1,104 @@
+<div class="container mt-5">
+    <div class="d-flex gap-3 mb-3">
+        <input [(ngModel)]="appStateService.productState.keyword" type="text" class="form-control" placeholder="Search a product">
+        <button (click)="fetchProducts(appStateService.productState.currentPage)" class="btn btn-success" title="Search"><i class="bi bi-search"></i></button>
+      </div>
+
+    <!-- <div *ngIf="appStateService.productState.status !== 'LOADING'; else loading"> -->
+      <!-- <div *ngIf="!isLoading; else loading"> -->
+     <div *ngIf="!(loadingService.isLoading$ | async); else loading">
+      <table class="table table-striped table-bordered table-responsive text-center">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th *ngIf="isAdmin">Checked</th>
+            <th  *ngIf="isAdmin">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (appStateService.productState.products.length) {
+            <tr *ngFor="let p of  appStateService.productState.products">
+              <td>{{p.id}}</td>
+              <td>{{p.name}}</td>
+              <td>{{p.price}}</td>
+              <td  *ngIf="isAdmin" class="d-flex gap-2 d-flex justify-content-center">
+                <button class="btn text-lg btn-lg btn-outline-light border fs-5" (click)="handleToggleChecked(p)">
+                  <i *ngIf="p.checked" class="bi bi-toggle2-on text-success"></i>
+                  <i *ngIf="!p.checked" class="bi bi-toggle2-off text-danger"></i>
+                </button>
+              </td>
+              <td  *ngIf="isAdmin">
+                <button class="btn text-lg btn-lg btn-outline-light border fs-5" (click)="handleDeleteProduct(p)">
+                  <i class="bi bi-trash3 text-danger"></i>
+                </button>
+                <button class="btn text-lg btn-lg btn-outline-light border fs-5 ms-1" (click)="handleEditProduct(p)">
+                  <i class="bi bi-pencil-square text-success"></i>
+                </button>
+              </td>
+            </tr>
+          }
+          @else {
+            <tr>
+              <td colspan="5" class="text-secondary">
+                <h5>No Products Found</h5>
+              </td>
+            </tr>
+          }
+
+        </tbody>
+        <tfoot>
+          <nav aria-label="Page navigation example" *ngIf="appStateService.productState.totalPageCount > 0">
+            <ul class="pagination ps-0">
+
+              <li class="page-item" *ngFor="let page of [].constructor(appStateService.productState.totalPageCount); let i = index"><a class="btn btn-outline-success mx-1" [ngClass]="appStateService.productState.currentPage == i + 1 ? 'btn-success text-white' : '' " (click)="fetchProducts(i + 1)">{{i + 1}}</a></li>
+
+            </ul>
+          </nav>
+        </tfoot>
+      </table>
+    </div>
+  
+
+      <ng-template #loading>
+        <table class="table table-striped table-bordered table-responsive text-center">
+          <thead>
+            <tr>
+              <th class="placeholder-glow"><span class="placeholder col-12 rounded bg-secondary text-white">ID</span></th>
+              <th class="placeholder-glow"><span class="placeholder col-12 rounded bg-secondary text-white">Name</span></th>
+              <th class="placeholder-glow"><span class="placeholder col-12 rounded bg-secondary text-white">Price</span></th>
+              <th  *ngIf="isAdmin" class="placeholder-glow"><span class="placeholder col-12 rounded bg-secondary text-white">Checked</span></th>
+              <th  *ngIf="isAdmin" class="placeholder-glow"><span class="placeholder col-12 rounded bg-secondary text-white">Actions</span></th>
+            </tr>
+          </thead>
+          <tbody >
+            @if (appStateService.productState.products.length) {
+              <tr *ngFor="let p of  appStateService.productState.products">
+                <td class="placeholder-glow"><span class="placeholder col-12 rounded bg-secondary"></span></td>
+                <td class="placeholder-glow"><span class="placeholder col-12 rounded bg-secondary"></span></td>
+                <td class="placeholder-glow"><span class="placeholder col-12 rounded bg-secondary"></span></td>
+                <td  *ngIf="isAdmin" class="placeholder-glow"><a class="btn disabled placeholder text-secondary bg-secondary">X</a></td>
+                <td  *ngIf="isAdmin" class="placeholder-glow d-flex gap-2 d-flex justify-content-center">
+                  <a class="btn disabled placeholder text-secondary bg-secondary">X</a>
+                  <a class="btn disabled placeholder text-secondary bg-secondary">X</a>
+                </td>
+              </tr>
+            }
+     
+          </tbody>
+          <tfoot>
+            <nav aria-label="Page navigation example" *ngIf="appStateService.productState.totalPageCount > 0">
+              <ul class="pagination ps-0 gap-1">
+  
+                <li class="page-item placeholder-glow" *ngFor="let page of [].constructor(appStateService.productState.totalPageCount)">
+                  <a class="btn btn-success disabled placeholder text-success">X</a></li>
+  
+              </ul>
+            </nav>
+          </tfoot>
+        </table>
+      </ng-template>
+      
+</div> 
+
